@@ -1,0 +1,71 @@
+#!/bin/bash
+#print usage
+function usage {
+    echo "usage"
+    exit
+}
+
+#检测trace类型参数是否为空
+if [ $# -lt 5 ]
+then
+    echo $#
+fi
+
+#检测trace类型是否合法
+if [ "$1" = "ltrace" ]
+then
+#执行ltrace相关
+
+#统计系统调用
+    if [ $2 = "time" ]
+    then
+#统计函数调用时间
+        if [ $3 = "system" ]
+        then
+	    ltrace  -r -f -c -S -o $4 $5
+	elif [ $3 = "li" ]
+	then 
+	    ltrace  -r -f -c -o $4 $5
+	fi 
+
+    elif [ $2 = "normal" ]
+    then
+#正常统计
+        if [ $3 = "system" ]
+        then
+            ltrace  -r -f -S -o $4 $5
+        elif [ $3 = "li" ]
+        then
+            ltrace -r -f -o $4 $5
+        fi 
+    fi
+
+elif [ "$1" = "ftrace" ]
+then
+#统计ftrace
+    echo "setting tracer"
+
+    echo "" > $2/tracing/trace
+    echo "$3" > $2/tracing/current_tracer
+
+    echo "set complete"
+
+    echo "start trace"
+    echo 0 > $2/tracing/tracing_on
+   #echo $$ > $2/tracing/set_ftrace_pid
+    echo 1 > $2/tracing/tracing_on
+    $5
+    echo 0 > $2/tracing/tracing_on
+    
+    echo "trace comlete,copying logs"
+
+    cp $2/tracing/trace $4
+    echo "all compelete"
+else
+    echo "you can only input ltrace or ftrace"
+fi
+
+
+
+
+
