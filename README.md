@@ -12,7 +12,7 @@
 <li>use ltrace not including the system call(time):<br/>
 ./trace ltrace time li (the log path) (cmd)</li>
 <li>use ftrace</li>
-./trace ftrace (the path that debugfs mount) (tracer function/function\_graph) (the path of output logs) (cmd of your program)
+./trace ftrace (the path that debugfs mount) (tracer function/function\_graph) (the path of output logs) (cmd of your program)</br>
 <b>2 autorun.sh(a shell script)</b><br/>
 <b>The function of this tool is to analyze the log of ftrace and generate the function graph of the function of kernel</b><br/>
 <b>The usage of this tool is</b><br/>
