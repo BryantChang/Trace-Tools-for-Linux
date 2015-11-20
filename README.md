@@ -1,5 +1,5 @@
-#Trace-Tools
-<h3>This is a set of trace tools of OS,including ltrace and ftrace,and it can also analyze the ftrace log automatically</h3>
+#Trace-Tools for Linux
+<h3>This is a set of trace tools of Linux,including ltrace and ftrace,and it can also analyze the ftrace log automatically</h3>
 <h4>usage of these tools</h4>
 <b>1 trace(a shell script)</b><br/>
 <b>The function of this tool is collect the ltrace and ftrace</b></br>
